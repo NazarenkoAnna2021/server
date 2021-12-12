@@ -35,6 +35,7 @@ const createString = (values, id) => {
     if (index != arr.length - 1) str += ', ';
   });
   str += ` WHERE id = ${id};`;
+  console.log(str);
   return str;
 }
 
