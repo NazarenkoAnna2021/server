@@ -1,8 +1,8 @@
 const URL = require('url');
 
-const { GET_USER, GET_ALL_USERS, CREATE_TEACHER, CREATE_STUDENT, UPDATE_USER, DELETE_USERS, GET_UNIVERSITY, CREATE_UNIVERSITY } = require('../constants/routes');
+const { GET_USER, GET_ALL_USERS, CREATE_TEACHER, CREATE_STUDENT, UPDATE_USER, DELETE_USERS, GET_UNIVERSITY, GET_ALL_UNIVERSITIES, CREATE_UNIVERSITY } = require('../constants/routes');
 const { getSingleUser, getAllUsers, createNewTeacher, createNewStudent, updateUser, deleteUser } = require('../controllers/user.controller');
-const { getSingleUniversity, createNewUniversity } = require('../controllers/university.controller');
+const { getSingleUniversity, getAllUniversities, createNewUniversity } = require('../controllers/university.controller');
 const { getUsers } = require('../database/repositories/user.repository');
 
 const router = async ({ req, res, body }) => {
@@ -23,7 +23,7 @@ const router = async ({ req, res, body }) => {
       break;
 
     case method === 'GET' && pathname === GET_ALL_USERS:
-      ({ result, error } = await getAllUsers());
+      ({ result, error } = await getAllUsers(query));
       break;
     case method === 'PUT' && pathname === UPDATE_USER:
       ({ result, error } = await updateUser(body, query));
@@ -39,6 +39,10 @@ const router = async ({ req, res, body }) => {
 
     case method === 'GET' && pathname === GET_UNIVERSITY:
       ({ result, error } = await getSingleUniversity(query));
+      break;
+
+      case method === 'GET' && pathname === GET_ALL_UNIVERSITIES:
+      ({ result, error } = await getAllUniversities(query));
       break;
 
     default:

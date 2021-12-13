@@ -17,3 +17,15 @@ exports.createUniversity = async (country, city, name, accreditation) => {
       return { error: e.message };
     }
   };
+
+  exports.getUniversities = async ({ page, perPage, name }) => {
+    try {
+      const first = (page * 10) - 10;
+      console.log('rep: ', page, name, first);
+      const university = await pgClient.query(`SELECT * FROM universities ${name ? `WHERE name ILIKE '%${name}%' ` : ''}LIMIT ${perPage || 10} offset ${!name ? first : 0}`);
+      console.log(university.rows);
+      return { result: university.rows };
+    } catch (e) {
+      return { error: e.message };
+    }
+  }; 

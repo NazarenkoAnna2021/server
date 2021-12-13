@@ -9,9 +9,11 @@ exports.getUserById = async (id) => {
   }
 };
 
-exports.getUsers = async () => {
+exports.getUsers = async ({ page, perPage, name }) => {
   try {
-    const user = await pgClient.query(`SELECT * FROM users`);
+    const first = (page * 10) - 10;
+    console.log('rep: ', page, name, first);
+    const user = await pgClient.query(`SELECT * FROM users ${name ? `WHERE name ILIKE '%${name}%' ` : ''}LIMIT ${perPage || 10} offset ${!name ? first : 0}`);
     console.log(user.rows);
     return { result: user.rows };
   } catch (e) {
@@ -22,6 +24,7 @@ exports.getUsers = async () => {
 exports.createUser = async (role, name, age, university_id) => {
   try {
     await pgClient.query(`INSERT INTO users(role, name, age, university_id) VALUES ('${role}', '${name}', ${age}, ${university_id})`);
+
     return { result: true };
   } catch (e) {
     return { error: e.message };

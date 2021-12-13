@@ -11,8 +11,9 @@ const getSingleUser = async (query) => {
   return { result: { data: result, status: 200 } };
 };
 
-const getAllUsers = async () => {
-  const { error: dbError, result } = await userRepository.getUsers();
+const getAllUsers = async ({page, perPage, name}) => {
+  console.log(page, perPage, name);
+  const { error: dbError, result } = await userRepository.getUsers({page, perPage, name});
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };
