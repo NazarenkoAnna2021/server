@@ -1,12 +1,14 @@
 const pgClient = require('../index');
 
-exports.getUniversityById = async (id) => {
-  try {
-    const university = await pgClient.query(`SELECT * FROM universities WHERE id = ${id} LIMIT 1`);
-    return { result: university.rows[0] };
-  } catch (e) {
-    return { error: e.message };
-  }
+const createString = (values, id) => {
+  let str = 'UPDATE universities SET ';
+  values.forEach((element, index, arr) => {
+    str += element[0].concat("='", element[1], "'");
+    if (index != arr.length - 1) str += ', ';
+  });
+  str += ` WHERE id = ${id};`;
+  console.log(str);
+  return str;
 };
 
 exports.createUniversity = async (country, city, name, accreditation) => {
@@ -17,6 +19,15 @@ exports.createUniversity = async (country, city, name, accreditation) => {
       return { error: e.message };
     }
   };
+
+exports.getUniversityById = async (id) => {
+  try {
+    const university = await pgClient.query(`SELECT * FROM universities WHERE id = ${id} LIMIT 1`);
+    return { result: university.rows[0] };
+  } catch (e) {
+    return { error: e.message };
+  }
+};
 
   exports.getUniversities = async ({ page, perPage, name }) => {
     try {
@@ -29,3 +40,21 @@ exports.createUniversity = async (country, city, name, accreditation) => {
       return { error: e.message };
     }
   }; 
+
+  exports.updateUniversityById = async (values, id) => {
+    try {
+      const university = await pgClient.query(createString(values, id));
+      return { result: university.rows[0] };
+    } catch (e) {
+      return { error: e.message };
+    }
+  }
+  
+  exports.deleteUniversityById = async (id) => {
+    try {
+      const university = await pgClient.query(`Delete FROM universities WHERE id = ${id}`);
+      return { result: university.rows[0] };
+    } catch (e) {
+      return { error: e.message };
+    }
+  };

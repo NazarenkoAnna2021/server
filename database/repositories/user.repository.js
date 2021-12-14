@@ -1,5 +1,16 @@
 const pgClient = require('../index');
 
+const createString = (values, id) => {
+  let str = 'UPDATE users SET ';
+  values.forEach((element, index, arr) => {
+    str += element[0].concat("='", element[1], "'");
+    if (index != arr.length - 1) str += ', ';
+  });
+  str += ` WHERE id = ${id};`;
+  console.log(str);
+  return str;
+};
+
 exports.getUserById = async (id) => {
   try {
     const user = await pgClient.query(`SELECT * FROM users WHERE id = ${id} LIMIT 1`);
@@ -30,17 +41,6 @@ exports.createUser = async (role, name, age, university_id) => {
     return { error: e.message };
   }
 };
-
-const createString = (values, id) => {
-  let str = 'UPDATE users SET ';
-  values.forEach((element, index, arr) => {
-    str += element[0].concat("='", element[1], "'");
-    if (index != arr.length - 1) str += ', ';
-  });
-  str += ` WHERE id = ${id};`;
-  console.log(str);
-  return str;
-}
 
 exports.updateUserById = async (values, id) => {
   try {
