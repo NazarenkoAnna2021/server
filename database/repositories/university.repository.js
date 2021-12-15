@@ -33,8 +33,7 @@ exports.getUniversityById = async (id) => {
     try {
       const first = (page * 10) - 10;
       console.log('rep: ', page, name, first);
-      const university = await pgClient.query(`SELECT * FROM universities ${name ? `WHERE name ILIKE '%${name}%' ` : ''}LIMIT ${perPage || 10} offset ${!name ? first : 0}`);
-      console.log(university.rows);
+      const university = await pgClient.query(`SELECT * FROM (SELECT * FROM universities offset ${first || 0} LIMIT ${perPage || 10}) page ${name ? `WHERE page.name ILIKE '%${name}%' ` : ''}`);
       return { result: university.rows };
     } catch (e) {
       return { error: e.message };

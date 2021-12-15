@@ -1,19 +1,29 @@
 const validators = require('./validation');
 const userRepository = require('../database/repositories/user.repository');
 
-const getSingleUser = async (query) => {
-  const { value, error } = validators.validate(query, validators.idValidator);
-  if (error) return { error };
-
-  const { error: dbError, result } = await userRepository.getUserById(value.id);
+const getTeacher = async (query) => {
+  // const { value, error } = validators.validate(query, validators.idValidator);
+  // if (error) return { error };
+  console.log(query);
+  const { error: dbError, result } = await userRepository.getUserByUniversityId(query, 'teacher');
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };
 };
 
-const getAllUsers = async ({page, perPage, name}) => {
-  console.log(page, perPage, name);
-  const { error: dbError, result } = await userRepository.getUsers({page, perPage, name});
+const getStudent = async (query) => {
+  /* const { value, error } = validators.validate(query, validators.idValidator);
+  if (error) return { error }; */
+
+  const { error: dbError, result } = await userRepository.getUserByUniversityId(query, 'student');
+
+  if (dbError) return { error: { status: 500, data: { error } } };
+  return { result: { data: result, status: 200 } };
+};
+
+const getAllUsers = async ({ page, perPage, name, role }) => {
+  console.log(page, perPage, name, role);
+  const { error: dbError, result } = await userRepository.getUsers({ page, perPage, name, role });
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };
@@ -22,9 +32,9 @@ const getAllUsers = async ({page, perPage, name}) => {
 const createNewStudent = async (body) => {
   const { value, error } = validators.validate(body, validators.userValidator);
   if (error) return { error };
-  
 
-  const { error: dbError } = await userRepository.createUser('Student', value.name, value.age, value.university_id);
+
+  const { error: dbError } = await userRepository.createUser('student', value.name, value.age, value.university_id);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: { created: 1 }, status: 201 } };
@@ -33,9 +43,9 @@ const createNewStudent = async (body) => {
 const createNewTeacher = async (body) => {
   const { value, error } = validators.validate(body, validators.userValidator);
   if (error) return { error };
-  
 
-  const { error: dbError } = await userRepository.createUser('Teaher', value.name, value.age, value.university_id);
+
+  const { error: dbError } = await userRepository.createUser('teacher', value.name, value.age, value.university_id);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: { created: 1 }, status: 201 } };
@@ -46,7 +56,7 @@ const updateUser = async (body, query) => {
   if (error) return { error };
 
   const changes = Object.entries(body);
-  
+
   const { error: dbError, result } = await userRepository.updateUserById(changes, value.id);
 
   if (dbError) return { error: { status: 500, data: { error } } };
@@ -63,4 +73,4 @@ const deleteUser = async (query) => {
   return { result: { deleted: 1, status: 200 } };
 };
 
-module.exports = { getSingleUser, getAllUsers, createNewTeacher, createNewStudent, updateUser, deleteUser };
+module.exports = { getTeacher, getStudent, getAllUsers, createNewTeacher, createNewStudent, updateUser, deleteUser };

@@ -1,3 +1,5 @@
+const { required } = require('joi');
+
 exports.idValidator = require('./id.validator').idValidator;
 exports.userValidator = require('./user.validator').userValidator;
 exports.universityValidator = require('./university.validator').universityValidator;

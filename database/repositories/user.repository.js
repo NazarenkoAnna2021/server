@@ -11,21 +11,27 @@ const createString = (values, id) => {
   return str;
 };
 
-exports.getUserById = async (id) => {
+function createWhereNameRole(name, role) {
+  if (name && role) return `WHERE name ILIKE '%${name}%' AND role = '${role}'`;
+  if (name) return `WHERE page.name ILIKE '%${name}%'`;
+  if (role) return `WHERE page.role = '${role}'`;
+  return '';
+}
+
+exports.getUserByUniversityId = async ({ page, perPage, id }, role) => {
   try {
-    const user = await pgClient.query(`SELECT * FROM users WHERE id = ${id} LIMIT 1`);
-    return { result: user.rows[0] };
+    const first = (page * 10) - 10;
+    const user = await pgClient.query(`SELECT * FROM (select * from users where role = '${role}' offset ${first || 0} LIMIT ${perPage || 10}) page WHERE page.university_Id = ${id || -1}`);
+    return { result: user.rows };
   } catch (e) {
     return { error: e.message };
   }
 };
 
-exports.getUsers = async ({ page, perPage, name }) => {
+exports.getUsers = async ({ page, perPage, name, role }) => {
   try {
     const first = (page * 10) - 10;
-    console.log('rep: ', page, name, first);
-    const user = await pgClient.query(`SELECT * FROM users ${name ? `WHERE name ILIKE '%${name}%' ` : ''}LIMIT ${perPage || 10} offset ${!name ? first : 0}`);
-    console.log(user.rows);
+    const user = await pgClient.query(`SELECT * FROM (select * from users offset ${first || 0} LIMIT ${perPage || 10}) page ${createWhereNameRole(name, role)}`);
     return { result: user.rows };
   } catch (e) {
     return { error: e.message };
