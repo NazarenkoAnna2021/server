@@ -23,7 +23,7 @@ const getSingleUniversity = async (query) => {
 
 
 const getAllUniversities = async (query) => {
-  const { error: dbError, result } = await universityRepository.getUniversities( query );
+  const { error: dbError, result } = await universityRepository.getUniversities(query);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };

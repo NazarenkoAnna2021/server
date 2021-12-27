@@ -1,41 +1,21 @@
 const validators = require('./validation');
-const universityRepository = require('../database/repositories/courses.repository');
+const coursesRepository = require('../database/repositories/courses.repository');
 
 const createNewCourses = async (body) => {
-  const { value, error } = validators.validate(body, validators.universityValidator);
+  const { value, error } = validators.validate(body, validators.coursesValidator);
   if (error) return { error };
 
-  const { error: dbError } = await universityRepository.createCourses(value.name, value.university_id, value.teachers_id);
+  const { error: dbError } = await coursesRepository.createCourses(value);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: { created: 1 }, status: 201 } };
 };
 
-const getSingleCourses = async (query) => {
+const getCourses = async (query) => {
   const { value, error } = validators.validate(query, validators.idValidator);
   if (error) return { error };
 
-  const { error: dbError, result } = await universityRepository.getUniversityById(value.id);
-
-  if (dbError) return { error: { status: 500, data: { error } } };
-  return { result: { data: result, status: 200 } };
-};
-
-
-const getAllCourses = async ({ page, perPage, name }) => {
-  const { error: dbError, result } = await universityRepository.getCourses({ page, perPage, name });
-
-  if (dbError) return { error: { status: 500, data: { error } } };
-  return { result: { data: result, status: 200 } };
-};
-
-const updateCourses = async (body, query) => {
-  const { value, error } = validators.validate(query, validators.idValidator);
-  if (error) return { error };
-
-  const changes = Object.entries(body);
-  
-  const { error: dbError, result } = await universityRepository.updateCoursesById(changes, value.id);
+  const { error: dbError, result } = await coursesRepository.getCoursesByUniversityId(value);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };
@@ -45,10 +25,30 @@ const deleteCourses = async (query) => {
   const { value, error } = validators.validate(query, validators.idValidator);
   if (error) return { error };
 
-  const { error: dbError } = await universityRepository.deleteCoursesById(value.id);
+  const { error: dbError } = await coursesRepository.deleteCourseById(value.id);
 
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { deleted: 1, status: 200 } };
 };
 
-module.exports = { createNewCourses, getSingleCourses, getAllCourses, updateCourses, deleteCourses };
+const expelStudent = async (query) => {
+  const { value, error } = validators.validate(query, validators.idValidator);
+  if (error) return { error };
+
+  const { error: dbError } = await coursesRepository.expelStudentById(value.id);
+
+  if (dbError) return { error: { status: 500, data: { error } } };
+  return { result: { deleted: 1, status: 200 } };
+};
+
+const enrollToCourse = async (body) => {
+  const { value, error } = validators.validate(body, validators.doubleIdValidator);
+  if (error) return { error };
+
+  const { error: dbError, result } = await coursesRepository.enrollStudentToCourse(value);
+
+  if (dbError) return { error: { status: 500, data: { error } } };
+  return { result: { data: result, status: 201 } };
+}
+
+module.exports = { createNewCourses, getCourses, deleteCourses, expelStudent, enrollToCourse };

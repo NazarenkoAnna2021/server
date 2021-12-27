@@ -1,9 +1,12 @@
 const { required } = require('joi');
 
 exports.idValidator = require('./id.validator').idValidator;
+exports.doubleIdValidator = require('./id.validator').doubleIdValidator;
 exports.userValidator = require('./user.validator').userValidator;
+exports.userGetValidator = require('./user.validator').userGetValidator;
 exports.universityValidator = require('./university.validator').universityValidator;
 exports.coursesValidator = require('./courses.validator').coursesValidator;
+exports.marksValidator = require('./marks.validator').marksValidator;
 
 exports.validate = (data, schema) => {
   const result = schema.validate(data, { abortEarly: false });

@@ -7,7 +7,6 @@ const createString = (values, id) => {
     if (index != arr.length - 1) str += ', ';
   });
   str += ` WHERE id = ${id};`;
-  console.log(str);
   return str;
 };
 
@@ -32,7 +31,6 @@ exports.getUniversityById = async (id) => {
   exports.getUniversities = async ({ page, perPage, name }) => {
     try {
       const first = (page * 10) - 10;
-      console.log('rep: ', page, name, first);
       const university = await pgClient.query(`SELECT * FROM (SELECT * FROM universities offset ${first || 0} LIMIT ${perPage || 10}) page ${name ? `WHERE page.name ILIKE '%${name}%' ` : ''}`);
       return { result: university.rows };
     } catch (e) {

@@ -3,7 +3,7 @@ module.exports = {
   CREATE_STUDENT: '/create-student',
   GET_TEACHER: '/get-teacher',
   GET_STUDENT: '/get-student',
-  GET_ALL_USERS: '/get-all-users',
+  GET_STUDENT_BY_COURSE: '/get-student-by-course',
   UPDATE_USER: '/update-user',
   DELETE_USER: '/delete-user',
 
@@ -13,5 +13,13 @@ module.exports = {
   UPDATE_UNIVERSITY: '/update-university',
   DELETE_UNIVERSITY: '/delete-university',
 
-  CREATE_COURSE: '/create-university',
+  CREATE_COURSE: '/create-courses',
+  GET_COURSE: '/get-courses',
+  DELETE_COURSE: '/delete-courses',
+  CREATE_ENROLL: '/create-enroll',
+  EXPELL_STUDENT: '/expel-student',
+  CREATE_MARK: '/create-mark',
+  GET_RATING: '/get-rating',
+
+  GET_TABLE: '/get-table'
 };
