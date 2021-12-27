@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "main": "serwer.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^27.4.5",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "joi": "^17.5.0",
     "pg": "^8.7.1",
+    "swagger-ui-express": "^4.3.0",
     "url": "^0.11.0"
   },
   "description": ""

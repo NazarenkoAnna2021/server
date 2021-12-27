@@ -1,8 +1,5 @@
-const userRepository = require('../database/repositories/user.repository');
 const universityRepository = require('../database/repositories/university.repository');
 const { getStudentRatingByCourse } = require('./user.controller');
-
-
 
 const getTable = async function (page) {
     let table = [];

@@ -16,7 +16,7 @@ const getSingleUniversity = async (query) => {
   if (error) return { error };
 
   const { error: dbError, result } = await universityRepository.getUniversityById(value.id);
-
+  
   if (dbError) return { error: { status: 500, data: { error } } };
   return { result: { data: result, status: 200 } };
 };
