@@ -1,0 +1,714 @@
+{
+    "info": {
+        "_postman_id": "21ec8655-7879-40e4-893a-bb15febdb11f",
+        "name": "Universeties",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Users",
+            "item": [
+                {
+                    "name": "Create teacher",
+                    "id": "5c3545d3-d4c8-45ff-bc9d-61d88cf36ea2",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"Olga Cergeevna\",\r\n    \"age\": 54,\r\n    \"university_id\": 1\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-teacher",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-teacher"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Student",
+                    "id": "d4f77f3e-0cd8-48e3-b998-a7a025bfaf95",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"Katya\",\r\n    \"age\": 20,\r\n    \"university_id\": 2\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-student",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-student"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get students by courses",
+                    "id": "ff061c2b-b43e-486f-b0ff-b7a40216c97a",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/get-student-by-course?page=1&id=1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-student-by-course"
+                            ],
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "5",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "a",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get student by id",
+                    "id": "47a0ee9b-fa61-457c-9a9c-d0baa86a405f",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/get-student?id=1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-student"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "a",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "prePage",
+                                    "value": "3",
+                                    "type": "text",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get teacher by id",
+                    "id": "840c22d9-0a1f-4c08-a5b1-48173957b6f0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/get-teacher?id=1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-teacher"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "prePage",
+                                    "value": "2",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "k",
+                                    "type": "text",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "type": "text",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update user",
+                    "id": "f1c85f81-f4d9-4b50-98e4-c83b093fe2c5",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"name\": \"Oleg\",\r\n  \"age\": 22\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/update-user?id=14",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "update-user"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "14"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete user by id",
+                    "id": "b814ab46-466f-4d4f-b991-83d79861f299",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/delete-user?id=14",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "delete-user"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "14"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "51648a31-b77c-47db-966b-da1f812ccb3f"
+        },
+        {
+            "name": "Universities",
+            "item": [
+                {
+                    "name": "Create university",
+                    "id": "c068f1dd-0e75-43fa-864e-967dd7fd0b21",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"country\": \"UA\",\r\n    \"city\": \"Dnipro\",\r\n    \"name\": \"ZZZ\",\r\n    \"accreditation\": \"4\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-university",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-university"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get university by id",
+                    "id": "106fbaf9-4543-424e-98da-287923eb2a33",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/get-university?id=3",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-university"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "3"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get universities",
+                    "id": "9ac7cfff-79a7-4068-bba9-05bfe0527d52",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/get-all-universities",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-all-universities"
+                            ],
+                            "query": [
+                                {
+                                    "key": "name",
+                                    "value": "e",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "2",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "perPage",
+                                    "value": "1",
+                                    "type": "text",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update university",
+                    "id": "06b0a8dd-e70f-48b5-825e-971d04fa5bd6",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n  \"name\": \"DIIT\",\r\n  \"accreditation\": \"2\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/update-university?id=2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "update-university"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete user by id",
+                    "id": "cf82995d-fc09-47b0-8981-bfe6158c1a7b",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/delete-university?id=12",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "delete-university"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "12"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "8abcb0a4-6d2f-407e-9fed-210e3e7e1b26"
+        },
+        {
+            "name": "Courses",
+            "item": [
+                {
+                    "name": "Create course",
+                    "id": "37eefeff-6561-40f5-9c68-842c9a6920cc",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"name\": \"Math\",\r\n    \"teachers_id\": \"7\"\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-courses",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-courses"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get courses by university id",
+                    "id": "c8da9d2b-f7de-4191-8c62-bf5d8237f721",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/get-courses?id=2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-courses"
+                            ],
+                            "query": [
+                                {
+                                    "key": "",
+                                    "value": "",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete course by id",
+                    "id": "759e4fe2-fe2d-4507-a886-c4f5f81cbc8f",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "http://localhost:3001/delete-courses?id=2",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "delete-courses"
+                            ],
+                            "query": [
+                                {
+                                    "key": "id",
+                                    "value": "2"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create course enroll",
+                    "id": "46ad99b6-b364-4a1c-9d8f-2aeb8a6f41fc",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"students_id\": 18,\r\n    \"courses_id\": 8\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-enroll",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-enroll"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create course mark",
+                    "id": "5a85a829-bb14-4142-b683-b885ce70e71a",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\r\n    \"mark\": \"13\",\r\n    \"student_id\": 18,\r\n    \"course_id\": 8,\r\n    \"university_id\": 1\r\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/create-mark",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "create-mark"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get students rating by courses",
+                    "id": "6bdb8edb-3713-4a07-bef7-e1f8802413e0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "http://localhost:3001/get-student-by-course?page=1&id=1",
+                            "protocol": "http",
+                            "host": [
+                                "localhost"
+                            ],
+                            "port": "3001",
+                            "path": [
+                                "get-student-by-course"
+                            ],
+                            "query": [
+                                {
+                                    "key": "perPage",
+                                    "value": "5",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "name",
+                                    "value": "a",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "id",
+                                    "value": "1"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "3e97af6b-e9d6-4506-9289-7239ba32a070"
+        },
+        {
+            "name": "table",
+            "id": "e6c1d63a-5fcb-4012-99e9-080c5603864b",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3001/get-table",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "get-table"
+                    ],
+                    "query": [
+                        {
+                            "key": "page",
+                            "value": "2",
+                            "type": "text",
+                            "disabled": true
+                        }
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
