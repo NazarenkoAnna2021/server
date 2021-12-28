@@ -28,10 +28,12 @@ exports.getUniversityById = async (id) => {
   }
 };
 
-  exports.getUniversities = async ({ page, perPage, name }) => {
+  exports.getUniversities = async ({ page, prePage, name }) => {
     try {
+      console.log(name)
       const first = (page * 10) - 10;
-      const university = await pgClient.query(`SELECT * FROM (SELECT * FROM universities offset ${first || 0} LIMIT ${perPage || 10}) page ${name ? `WHERE page.name ILIKE '%${name}%' ` : ''}`);
+      const university = await pgClient.query(`SELECT * FROM (SELECT * FROM universities offset ${first || 0} LIMIT ${prePage || 10}) page 
+      ${name ? `WHERE page.name ILIKE '%${name}%'` : ''}`);
       return { result: university.rows };
     } catch (e) {
       return { error: e.message };

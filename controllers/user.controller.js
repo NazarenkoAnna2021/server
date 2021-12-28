@@ -32,7 +32,7 @@ const getTeacher = async (query) => {
 };
 
 const getStudent = async (query) => {
-  const { value, error } = validators.validate(query, validators.userGetValidator);
+  const { value, error } = validators.validate(query, validators.getValidator);
   if (error) return { error };
 
   const { error: dbError, result } = await userRepository.getUserByUniversityId(value, 'student');
@@ -52,7 +52,7 @@ const getStudentByCourse = async (query) => {
 };
 
 const getStudentRatingByCourse = async (query) => {
-  const { value, error } = validators.validate(query, validators.userGetValidator);
+  const { value, error } = validators.validate(query, validators.getValidator);
   if (error) return { error };
 
   const { error: dbError, result } = await userRepository.getStudentRatingByCourseId(value);
