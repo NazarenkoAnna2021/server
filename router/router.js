@@ -1,7 +1,8 @@
 const URL = require('url');
 
-const { CREATE_TEACHER } = require('../constants/routes');
+const { CREATE_TEACHER, FACTORIAL_RECURSION, FACTORIAL_CYCLE } = require('../constants/routes');
 const createNewTeacher = require('../controllers/user.controller').createNewTeacher;
+const { calcTime, cycleFactorial, recursionFactorial } = require('../factorial');
 
 const router = async ({ req, res, body }) => {
   let result, error;
@@ -11,6 +12,14 @@ const router = async ({ req, res, body }) => {
     case method === 'POST' && pathname === CREATE_TEACHER:
       ({ result, error } = await createNewTeacher(body));
       break;
+
+      case method === 'GET' && pathname === FACTORIAL_RECURSION:
+      ({ result, error } = calcTime(recursionFactorial, query));
+      break;
+      case method === 'GET' && pathname === FACTORIAL_CYCLE:
+      ({ result, error } = calcTime(cycleFactorial, query));
+      break;
+
     default:
       res.statusCode = 404;
       return res.end(JSON.stringify({ error: 'Route Not Found' }));
