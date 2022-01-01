@@ -1,7 +1,7 @@
 const URL = require('url');
 
 const { CREATE_TEACHER } = require('../constants/routes');
-const { createNewTeacher } = require('../controllers/user.controller');
+const createNewTeacher = require('../controllers/user.controller').createNewTeacher;
 
 const router = async ({ req, res, body }) => {
   let result, error;
@@ -9,7 +9,7 @@ const router = async ({ req, res, body }) => {
   const { query, pathname } = URL.parse(url, true);
   switch (true) {
     case method === 'POST' && pathname === CREATE_TEACHER:
-      createNewTeacher(body);
+      ({ result, error } = await createNewTeacher(body));
       break;
     default:
       res.statusCode = 404;
